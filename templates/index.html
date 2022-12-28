@@ -1,0 +1,32 @@
+{% extends 'bootstrap/base.html' %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('static', filename='styles.css')}}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+{% endblock %}
+{% block title %}Image Colour Palette Generator{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <div class="container">
+  <h1 class="display-4">Image Colour Palette Generator 🎨</h1>
+  <p class="lead">Upload an image to create a colour palette</p>
+  <hr class="my-4">
+        {% for message in get_flashed_messages() %}
+            <h5>{{ message }}</h5>
+        {% endfor %}
+  <form method="POST" enctype="multipart/form-data" action="/">
+         <div class="input-group mb-3 container">
+             <input type="file" class="form-control" id="inputGroupFile02" name="uploaded-file">
+             <input class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">
+         </div>
+<!--        <input type="file" id="myFile" name="uploaded-file">-->
+<!--        <input type="submit">-->
+    </form>
+  <a class="btn btn-warning btn-lg" href="{{url_for('palette')}}" role="button">Run</a>
+</div>
+    </div>
+
+{% endblock %}
